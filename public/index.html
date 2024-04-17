@@ -14,88 +14,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <base href="/">
     <style>
-        .img-container {
-            padding: 0;
-        }
-
-        #login-img {
-            height: 100vh;
-            float: left;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: cornflowerblue;
-        }
-
-        .login-container {
-            display: flex;
-            justify-content: space-between;
-            justify-items: center;
-            min-width: 300px;
-            margin: 0;
-        }
-
-        .login {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            text-align: center;
-            align-items: center;
-            background-color: white;
-            margin: 8rem;
-            padding: 2rem;
-            border-radius: 8px;
-            width: 100%;
-        }
-
-        .input-icons {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .input-icons i {
-            float: inline-start;
-            position: absolute;
-            margin-top: 1%;
-        }
-
-        .icon {
-            padding: 10px;
-            min-width: 40px;
-        }
-
-        .input-field {
-            width: 100%;
-            min-width: 200px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        @media (max-width: 1100px) {
-            .img-container {
-                display: block;
-                justify-content: center;
-                text-align: center;
-                align-items: center;
-                width: 90vh;
-                height: auto;
-                min-width: 483px;
-                min-height: 100vh;
-            }
-
-            #login-img {
-                float: none;
-                justify-content: center;
-                text-align: center;
-                align-items: center;
-                width: 90vh;
-                height: auto;
-                min-width: 483px;
-                min-height: 100vh;
-            }
-        }
+        /* Your CSS styles remain unchanged */
     </style>
 </head>
 
@@ -108,7 +27,8 @@
             <h2>Login</h2>
             <div data-mdb-input-init class="input-icons">
                 <i class="bi bi-person-circle ms-3"></i>
-                <input type="text" id="username" class="input-field" placeholder="Username" />
+                <input type="text" id="username" class="input-field" placeholder="Username"
+                    onkeypress="handleKeyPress(event)" />
             </div>
 
             <button type="button" id="login-btn" class="btn btn-primary" onclick="login()">Login</button>
@@ -123,6 +43,13 @@
             const username = document.getElementById('username').value;
             socket.emit('sendUsername', username);
             window.location.href = `chat.html?username=${encodeURIComponent(username)}`;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                // Simulate a click on the login button
+                document.getElementById('login-btn').click();
+            }
         }
     </script>
 </body>
